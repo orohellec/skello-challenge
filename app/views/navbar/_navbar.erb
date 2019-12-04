@@ -1,0 +1,11 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-transparent text-white">
+  <a class="navbar-brand <%= "active disabled" if request.path_info == "/" %>" href="/">Skello Challenge</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav mr-0 ml-auto">
+      <a class="nav-item nav-link <%= "active disabled" if request.path_info == "/articles" %>" href="/articles">Articles</a>
+    </div>
+  </div>
+</nav>

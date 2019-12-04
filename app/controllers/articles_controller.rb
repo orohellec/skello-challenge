@@ -8,5 +8,4 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     erb :'articles/show'
   end
-
 end
