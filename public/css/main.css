@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'shriik';
+  src: url('/fonts/robot-font.ttf')
+}
+
+@font-face {
+  font-family: 'disposable-droid';
+  src: url('/fonts/DisposableDroidBB.ttf')
+}
+
+@font-face {
+  font-family: 'androidnation';
+  src: url('/fonts/androidnation.ttf')
+}
+
+html,
+body {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.container-fluid {
+  height: 80%;
+}
+
+body {
+  color: white;
+  font-family: "disposable-droid";
+  font-size: 1.3rem;
+  background: linear-gradient(.25turn, #0F2027, #203A43, #2C5364);
+}
+
+h1 {
+  font-family: "androidnation";
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+a {
+  color: white;
+  font-family: "androidnation";
+  text-decoration: none!important;
+  font-size: 0.9rem;
+}
+
+a:hover {
+  color: #2ccf24;
+}
+
+.active {
+  color: #2ccf24!important;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.author {
+  font-size: 2.2rem;
+}
