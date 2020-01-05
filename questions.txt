@@ -3,16 +3,47 @@ These can be done in any language you're comfortable with
 
 1. Give a regular expression that detects hexadecimal numbers in a text.
 For example, ‘0x0f4’, ‘0acdadecf822eeff32aca5830e438cb54aa722e3’, ‘8BADF00D’ should be detected.
-
+  /(0x)?[0-9a-f]+/i
 >
 
 2.Here is the pseudo code of a function that is defined recursively:
 -  f(0) = 1;
 -  f(1) = 3;
--  f(n)= 3 * f(n-1) f(n-2);
+-  f(n)= 3 * f(n-1) f(n-2); 
 Provide an implementation for ‘f’. Bonus points for a non recursive implementation.
 
+???????????????????????
+Sauf erreur de ma part le pseudo code n'est pas valide. J'ai donc pris la liberté 
+d'ajouter un signe '+' entre f(n-1) et f(n - 2) ainsi que des parenthèses autour
+???????????????????????
 >
+# recursive solution (not a good idea)
+def rec_func(n)
+  return 1 if n == 0
+  return 3 if n == 1
+  (3 * (rec_func(n-1) + rec_func(n-2)))
+end
+
+# iterative solution
+def iter_func(n)
+  return 1 if n == 0
+  return 3 if n == 1
+  tmp1 = 3
+  tmp2 = 1
+  for i in 2..n
+    total = 3 * (tmp1 + tmp2)
+    tmp2 = tmp1
+    tmp1 = total
+  end
+  total
+end
+
+# recursive with memoïzation
+@cache = [1, 3]
+def rec_func_memo(n)
+  return @cache[n] if @cache[n]
+  @cache[n] = 3 * (rec_func(n-1) + rec_func(n-2))
+end
 
 BACKEND - MySQL
 
@@ -24,9 +55,21 @@ BACKEND - MySQL
   - email,
   - created_at
 
+  CREATE TABLE users
+(
+    id INT PRIMARY KEY NOT NULL,
+    firstname VARCHAR(100),
+    lastname VARCHAR(100),
+    gender VARCHAR(20),
+    email VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
 >
 
 2. Write a query on the previous table that lists the 10 most recently added users.
+
+SELECT * FROM users ORDER BY created_at DESC
 
 >
 
@@ -35,8 +78,32 @@ Si vous êtes Français, vous pouvez répondre en Français.
 
 1. Describe the color yellow to someone who is blind
 
+  La couleur jaune de mon point de vue est une couleur optimiste, joyeuse, naïve et chaleureuse.
+  C’est la couleur du soleil qui te réchauffe toute l’année, même masqué par d’épais nuages gris, et 
+  qui te brûle si tu en abuses les jours d’été.
+  Elle rend les gens de meilleure humeur en été comme en hiver. 
+
+  Malgré toutes ces vertus il faut savoir faire la part des choses:
+
+  Il faut bien faire place à la grisaille de temps en temps pour que poussent nos récoltes
+  c’est une couleur joyeuse mais en aucun cas les gens portent des costards jaunes pour aller travailler.
+  Elle ne favorise pas la concentration et en abuser pourrait être associé à un trop plein d’optimisme irréaliste.
 >
 
 3. Describe the data model you’d use for a Battleship game. What are the key objects? How will your code use them?
+
+Je ne souhaite pas y passer trop de temps. Il est quasiment certain que si je devais coder le jeu je 
+rencontrerais des problèmes auxquels je n'ai pas pensé. Mais voici dans les grandes lignes comment 
+j'imagine la chose:
+  
+  Les objets clés:
+    - Game ( Objet central où l'on initialise le jeu, indique à quel joueur c'est le tour, si un bateau 
+            a été touché ou coulé, le résultat final de la partie )
+    - Player ( à l'initialisation, chaque joueur se verrait attribué x bateaux de taille différente,
+              une grille de suivi )
+    - Boats ( chaque bateau serait en fait un tableau sous le format [., ., ., .] selon sa taille. Un 
+            booléen pour savoir s'il est toujours dans la partie)
+    - Grids (contiendrait deux matrices. L'une pour mettre ses bateaux et suivre les tirs de l'ennemi, 
+            l'autre pour garder un suivi sur nos propres tirs. Initialisé à la création de chaque joueur)
 
 >
